@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_app_onboarding/items/item_splash_pageview.dart';
+import 'package:yoga_app_onboarding/pages/HomeScreen.dart';
 import 'package:yoga_app_onboarding/style.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  int currentPageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,51 +32,167 @@ class SplashScreen extends StatelessWidget {
               Column(
                 children: [
                   Expanded(
-                    flex: 75,
-                    child: Container(
-                      width: double.infinity,
-                      height: double.infinity,
-                      alignment: Alignment.bottomCenter,
-                      margin: EdgeInsets.symmetric(vertical: 0, horizontal: 32),
-                      child: FractionallySizedBox(
-                        widthFactor: 1,
-                        heightFactor: 0.9,
-                        child: Column(
-                          children: [
-                            Expanded(
-                              flex: 70,
-                              child: Container(
-                                margin: EdgeInsets.only(bottom: 32),
-                                child: Image.asset('assets/images/img1.png'),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 10,
-                              child: Text('Workout List'.toUpperCase(),
-                                  style: Theme.of(context).textTheme.headline2),
-                            ),
-                            Expanded(
-                              flex: 20,
-                              child: Text(
-                                'Now is as good a time as any to focus on getting your body into the best shape possible. if you really want make something happen.',
-                                style: Theme.of(context).textTheme.subtitle2,
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 10,
-                              child: Text(
-                                'Workout List',
-                                style: Theme.of(context).textTheme.subtitle2,
-                              ),
-                            ),
-                          ],
+                    flex: 70,
+                    child: PageView(
+                      onPageChanged: (pageIndex) {
+                        setState(() {
+                          currentPageIndex = pageIndex;
+                          print('current page index $currentPageIndex');
+                        });
+                      },
+                      children: [
+                        ItemSplashPageView(
+                          title: 'Workout List',
+                          description:
+                              'Now is as good a time as any to focus on getting your body into the best shape possible. if you really want make something happen.',
+                          img_path: 'assets/images/img1.png',
                         ),
-                      ),
+                        ItemSplashPageView(
+                          title: 'Contemplation',
+                          description:
+                              'Concentration on spiritual things as a form of private devotion. A state awarenes of God\'s being & An act of considering with attention.',
+                          img_path: 'assets/images/img2.png',
+                        ),
+                        ItemSplashPageView(
+                          title: 'Everyday Training',
+                          description:
+                              'Training every day is a good thing. It\'s led to several benefits both mentally and physically. Gone are the days of workout gym.',
+                          img_path: 'assets/images/img3.png',
+                        ),
+                      ],
                     ),
                   ),
                   Expanded(
-                    flex: 25,
+                      flex: 7,
+                      child: Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        child: FractionallySizedBox(
+                          heightFactor: 0.15,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Flexible(
+                                flex: 33,
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 4),
+                                  child: AspectRatio(
+                                    aspectRatio:
+                                        currentPageIndex != 0 ? 1 / 1 : 3 / 1,
+                                    child: Card(
+                                      elevation: 0,
+                                      clipBehavior: Clip.antiAlias,
+                                      margin: EdgeInsets.all(0),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: currentPageIndex != 0
+                                                  ? [
+                                                      AppTheme
+                                                          .gradient1_disabled,
+                                                      AppTheme
+                                                          .gradient2_disabled,
+                                                    ]
+                                                  : [
+                                                      AppTheme.gradient1,
+                                                      AppTheme.gradient2,
+                                                    ]),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Flexible(
+                                flex: 33,
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 4),
+                                  child: AspectRatio(
+                                    aspectRatio:
+                                        currentPageIndex != 1 ? 1 / 1 : 3 / 1,
+                                    child: Card(
+                                      elevation: 0,
+                                      clipBehavior: Clip.antiAlias,
+                                      margin: EdgeInsets.all(0),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: currentPageIndex != 1
+                                                  ? [
+                                                      AppTheme
+                                                          .gradient1_disabled,
+                                                      AppTheme
+                                                          .gradient2_disabled,
+                                                    ]
+                                                  : [
+                                                      AppTheme.gradient1,
+                                                      AppTheme.gradient2,
+                                                    ]),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Flexible(
+                                flex: 33,
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 4),
+                                  child: AspectRatio(
+                                    aspectRatio:
+                                        currentPageIndex != 2 ? 1 / 1 : 3 / 1,
+                                    child: Card(
+                                      clipBehavior: Clip.antiAlias,
+                                      elevation: 0,
+                                      margin: EdgeInsets.all(0),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: currentPageIndex != 2
+                                                  ? [
+                                                      AppTheme
+                                                          .gradient1_disabled,
+                                                      AppTheme
+                                                          .gradient2_disabled,
+                                                    ]
+                                                  : [
+                                                      AppTheme.gradient1,
+                                                      AppTheme.gradient2,
+                                                    ]),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )),
+                  Expanded(
+                    flex: 5,
+                    child: Container(),
+                  ),
+                  Expanded(
+                    flex: 15,
                     child: Container(
                       width: double.infinity,
                       height: double.infinity,
@@ -75,7 +200,25 @@ class SplashScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             flex: 50,
-                            child: Container(),
+                            child: Container(
+                              alignment: Alignment(0.0, 0.5),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, HomeScreen.routeName);
+                                },
+                                child: Text(
+                                  'Skip For Now',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .subtitle1
+                                      .copyWith(
+                                          color: AppTheme.headlineTextColor
+                                              .withOpacity(0.4)),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
                           ),
                           Expanded(
                             flex: 50,
@@ -84,7 +227,7 @@ class SplashScreen extends StatelessWidget {
                               height: double.infinity,
                               child: FractionallySizedBox(
                                 widthFactor: 0.9,
-                                heightFactor: 0.6,
+                                heightFactor: 1,
                                 child: Card(
                                   clipBehavior: Clip.antiAlias,
                                   elevation: 5,
@@ -120,7 +263,10 @@ class SplashScreen extends StatelessWidget {
                                           child: InkWell(
                                             splashFactory:
                                                 InkRipple.splashFactory,
-                                            onTap: () => null,
+                                            onTap: () {
+                                              Navigator.pushNamed(context,
+                                                  HomeScreen.routeName);
+                                            },
                                           ),
                                         ),
                                       )
@@ -133,6 +279,10 @@ class SplashScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Container(),
                   ),
                 ],
               ),

@@ -23,8 +23,8 @@ class AppTheme {
   static const Color google = Color(0xFFF2F8FF);
   static const Color gradient1 = Color(0xFFFFAA92);
   static const Color gradient2 = Color(0xFFFD0C92);
-  static Color gradient1_disabled = Color(0xFFFD0C92).withOpacity(0.3);
-  static Color gradient2_disabled = Color(0xFFFFAA92).withOpacity(0.3);
+  static Color gradient1_disabled = Color(0xFFFFAA92).withOpacity(0.3);
+  static Color gradient2_disabled = Color(0xFFFD0C92).withOpacity(0.3);
 
   static final ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: AppTheme.bg,
